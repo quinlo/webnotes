@@ -119,10 +119,11 @@ oReq.send();
 
 Support for DOM progress event monitoring of `XMLHttpRequest` transfers follows the specification for progress events: these events implement the `ProgressEvent` interface. The actual events you can monitor to determine the state of an ongoing transfer are:
 
-+ `progress`: The amount of data that has been retrieved and has changed.
++ `progress`: The amount of data that has been retrieved and has changed. (see in the example that event.total and event.loaded can be used to show a percentage complete)
 + `load`: The transfer is complete; all data is now in the `response`
-+ `error`:
-+ `abort`: 
++ `error`: An error occurred while transferring
++ `abort`: The transfer has been canceled
++ `loadend`: The transfer finished although we don't know if it succeeded or not
 
 >Note: You need to add the event listeners before calling open() on the request. Otherwise the progress events will not fire.
 
@@ -160,3 +161,40 @@ function transferCanceled(evt) {
   console.log("The transfer has been canceled by the user.");
 }
 ```
+
+Progress events exist for both download and upload transfers. The download events are fired on the `XMLHttpRequest` object itself, as shown in the above sample. The upload events are fired on the `XMLHttpRequest.upload` object, as shown below:
+
+```js
+var oReq = new XMLHttpRequest();
+
+oReq.upload.addEventListener("progress", updateProgress);
+oReq.upload.addEventListener("load", transferComplete);
+oReq.upload.addEventListener("error", transferFailed);
+oReq.upload.addEventListener("abort", transferCanceled);
+
+oReq.open();
+```
+
+One can also detect all three load-ending conditions (abort, load, or error) using the loadend event:
+
+```js
+req.addEventListener("loadend", loadEnd);
+
+function loadEnd(e) {
+  console.log("The transfer finished (although we don't know if it succeeded or not).");
+}
+```
+
+## Submitting forms and uploading files
+
+Instances of XMLHttpRequest can be used to submit forms in two ways: AJAX or FormData API.
+
+#### A brief introduction to the submit methods
+
+An HTML `<form>` can be sent in four ways:
+
+1. Using the `POST` method and setting the `enctype` attribute to `application/x-www-form-urlencoded` (default)
+2. Using the `POST` method and setting the `enctype` attribute to `text/plain`
+3. Using the `POST` method and setting the `enctype` attribute to `multipart/form-data`
+4. Using the `GET` method (`enctype` attribute will be ignored)
+
