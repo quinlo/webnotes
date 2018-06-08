@@ -6,5 +6,6 @@ This is a space where I like to keep notes on web-development topics that I need
 2. [HTMLCanvas](HTMLCanvas)
 3. [XMLHttpRequest](XMLHttpRequest)
 4. [RegEx](RegEx.md)
-5. Javascript
-    + [`this` and Object Prototypes](js-this-and-objects.md)
+5. [JS `this` and Object Prototypes](js-this-and-objects.md)
+6. [WebWorkers](webworkers)
+7. [Ajax](Ajax)
