@@ -9,3 +9,4 @@ This is a space where I like to keep notes on web-development topics that I need
 5. [JS `this` and Object Prototypes](js-this-and-objects.md)
 6. [WebWorkers](webworkers)
 7. [Ajax](Ajax)
+8. [Semantic HTML](semantichtml)
