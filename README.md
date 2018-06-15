@@ -10,3 +10,4 @@ This is a space where I like to keep notes on web-development topics that I need
 6. [WebWorkers](webworkers)
 7. [Ajax](Ajax)
 8. [Semantic HTML](semantichtml)
+9. [CSS Selectors](cssselectors)
